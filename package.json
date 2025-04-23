@@ -1,0 +1,65 @@
+{
+  "name": "bun-postgres-key-value",
+  "version": "0.0.0",
+  "author": {
+    "name": "Gerold Penz",
+    "email": "gerold@gp-softwaretechnik.at",
+    "url": "https://gp-softwaretechnik.at/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerold-penz/bun-postgres-key-value.git"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "bugs": {
+    "url": "https://github.com/gerold-penz/bun-postgres-key-value/issues"
+  },
+  "description": "A super fast key-value store with PostgreSQL that uses `sql` from Bun and v8 as a fast JSON replacement.",
+  "keywords": [
+    "Bun",
+    "Bun.js",
+    "Data-Storage",
+    "Database",
+    "Db",
+    "KV",
+    "KVS",
+    "Key-Value",
+    "Key-Value-Storage",
+    "Key-Value-Store",
+    "NoSql",
+    "NoSql-Database",
+    "PostgreSQL",
+    "Postgres",
+    "Storage",
+    "Store",
+    "TTL",
+    "Time To Live",
+    "TypeScript"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "bun test",
+    "bun:build": "bun build ./src/index.ts --outdir=./dist --target=node",
+    "tsc:dts": "bunx tsc --project ./tsconfigDts.json --declaration",
+    "build": "bun run typedoc && bun run bun:build && bun run tsc:dts",
+    "incr_version": "npm version patch --no-git-tag-version",
+    "incr_version:beta": "npm version prerelease --no-git-tag-version --preid beta",
+    "npm:publish": "bun run test && bun run incr_version && bun run build && npm publish --access public",
+    "npm:publish:beta": "bun run test && bun run incr_version:beta && bun run build && npm publish --access public --tag beta",
+    "jsr:publish": "bun run ./update_jsr_version.ts && bunx jsr publish",
+    "typedoc": "bunx typedoc",
+    "typedoc:watch": "bunx typedoc --watch --preserveWatchOutput"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ]
+}
